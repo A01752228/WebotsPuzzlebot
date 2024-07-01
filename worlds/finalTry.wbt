@@ -1,0 +1,304 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
+
+WorldInfo {
+  basicTimeStep 10
+}
+Viewpoint {
+  orientation -0.39523510533644984 -0.46300657143122276 0.7933562417484276 5.980258232095936
+  position -3.5034587120784764 0.41264382037177505 1.0239848751268468
+}
+TexturedBackground {
+  texture "factory"
+  luminosity 0.5
+}
+TexturedBackgroundLight {
+  luminosity 0.8
+}
+RectangleArena {
+  translation 0 0 -0.05
+  floorSize 7 7
+  floorTileSize 0.001 0.001
+}
+Robot {
+  translation 5.497465705647797e-07 -2.1945956926571614e-06 0.01543411313811177
+  rotation -0.47632206300796776 0.6006914097830985 0.6420958826410798 -2.1925468455851878
+  children [
+    Lidar {
+      translation 0 0.09 0.04
+      rotation 0.5773509358554485 0.5773509358554485 0.5773489358556708 -2.094395307179586
+      horizontalResolution 128
+      fieldOfView 1.57
+      numberOfLayers 1
+      near 0.05
+      minRange 0.05
+    }
+    DEF palo1 Solid {
+      translation -0.02 0.07 0.0199996
+      rotation 1 0 0 1.5707996938995745
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.533333 0.541176 0.521569
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.025
+            radius 0.002
+          }
+        }
+      ]
+      name "solid(4)"
+    }
+    DEF palo2 Solid {
+      translation 0.02 0.07 0.0199996
+      rotation 1 0 0 1.5707996938995745
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.533333 0.541176 0.521569
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.025
+            radius 0.002
+          }
+        }
+      ]
+      name "solid(5)"
+    }
+    DEF palo3 Solid {
+      translation -0.02 0.07 0.0599996
+      rotation 1 0 0 1.5707996938995745
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.533333 0.541176 0.521569
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.025
+            radius 0.002
+          }
+        }
+      ]
+      name "solid(6)"
+    }
+    DEF palo2 Solid {
+      translation 0.02 0.07 0.0599996
+      rotation 1 0 0 1.5707996938995745
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.533333 0.541176 0.521569
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.025
+            radius 0.002
+          }
+        }
+      ]
+      name "solid(7)"
+    }
+    DEF cilindro Solid {
+      translation 0 0.09 0.04
+      rotation 1 0 0 1.5707996938995747
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.533333 0.541176 0.521569
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.025
+            radius 0.03
+          }
+        }
+      ]
+      name "solid(3)"
+    }
+    DEF body Pose {
+      translation 0 -0.01 0
+      children [
+        DEF wheel Shape {
+          appearance PBRAppearance {
+            baseColor 0.541176 0.541176 0.541176
+            roughness 1
+            metalness 0
+          }
+          geometry Mesh {
+            url [
+              "../puzzlebot/MCR2_1000_13_Chassis.stl"
+            ]
+          }
+          castShadows FALSE
+        }
+      ]
+    }
+    DEF wl HingeJoint {
+      jointParameters HingeJointParameters {
+        position 475.7346891954344
+        anchor 0.09 -0.0199 0.0546
+      }
+      device [
+        RotationalMotor {
+          name "wl"
+          maxVelocity 50
+        }
+      ]
+      endPoint Solid {
+        translation 0.0900000087020032 -0.019663759447315656 0.053268287699974964
+        rotation -0.7033964877490029 -0.10654068813988789 0.7027677161004524 2.9279784177802597
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.529412 0.529412 0.529412
+              roughness 1
+              metalness 0
+            }
+            geometry Mesh {
+              url [
+                "../puzzlebot/MCR2_1000_1_1_Wheel_Coupler_2.stl"
+              ]
+            }
+          }
+        ]
+        boundingObject Cylinder {
+          height 0.01
+          radius 0.05
+        }
+        physics DEF wheelP Physics {
+        }
+        linearVelocity -9.423382054167855e-10 2.721652624995808e-10 4.816066592498834e-14
+        angularVelocity -5.5911853897191126e-09 -2.5039501771646146e-08 -2.1676390209407595e-09
+      }
+    }
+    DEF canica HingeJoint {
+      jointParameters HingeJointParameters {
+        position 7.446618002153732e-06
+      }
+      device [
+        RotationalMotor {
+          name "ball"
+          maxVelocity 50
+        }
+      ]
+      endPoint Solid {
+        translation -1.2067437581419963e-05 -0.04998625739562105 -0.09504229707045594
+        rotation 0.9859938604494025 0.14172737427322932 -0.08791733923237288 7.14379757675172e-06
+        children [
+          Shape {
+            appearance PBRAppearance {
+            }
+            geometry DEF ball Sphere {
+              radius 0.009
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE ball
+        physics Physics {
+        }
+        linearVelocity -8.065165554599724e-10 -9.377136388636614e-11 3.736869980043121e-14
+        angularVelocity 1.0631369973912799e-10 -1.8292312186495292e-10 -2.277078215770678e-09
+      }
+    }
+    DEF wr HingeJoint {
+      jointParameters HingeJointParameters {
+        position -249.04174009632177
+        anchor -0.09 -0.0202 0.0589
+      }
+      device [
+        RotationalMotor {
+          name "wr"
+          maxVelocity 50
+        }
+      ]
+      endPoint Solid {
+        translation -0.08999999206844489 -0.01924068145455783 0.058278734441256745
+        rotation -0.7054861325576232 0.06798367049961344 -0.7054555530395149 3.0070236738892935
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.592157 0.592157 0.592157
+              roughness 1
+              metalness 0
+            }
+            geometry Mesh {
+              url [
+                "../puzzlebot/MCR2_1000_1_1_Wheel_Coupler_2.stl"
+              ]
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject DEF w Shape {
+          appearance PBRAppearance {
+          }
+          geometry Cylinder {
+            height 0.01
+            radius 0.05
+          }
+        }
+        physics DEF wp Physics {
+        }
+        linearVelocity -5.482927932455583e-10 1.933376902174792e-10 -1.8715794363271975e-14
+        angularVelocity -2.794096972147002e-09 -1.2837028306131357e-08 -2.2213690474262042e-09
+      }
+    }
+    Camera {
+      translation -0.011 0.037 0.099
+      rotation 0.5571382746243875 0.5571392746248804 0.6157863035331517 -2.0217953071795867
+      children [
+        Pose {
+          translation -0.0273206 0.02 -0.03
+          rotation 0.25056300542381216 -0.25056300542381216 0.9351130202419243 -1.6378353071795866
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.533333 0.533333 0.533333
+                roughness 1
+                metalness 0
+              }
+              geometry Mesh {
+                url [
+                  "../puzzlebot/c.stl"
+                ]
+              }
+              castShadows FALSE
+            }
+          ]
+        }
+      ]
+      boundingObject Box {
+        size 0.03 0.1 0.01
+      }
+      physics Physics {
+      }
+    }
+  ]
+  boundingObject Mesh {
+    url [
+      "../puzzlebot/MCR2_1000_13_Chassis.stl"
+    ]
+  }
+  physics Physics {
+  }
+  controller "final_final"
+  linearVelocity -7.614754596706689e-10 1.328769424200724e-10 -1.5195036138834666e-11
+  angularVelocity 1.083444430837867e-10 -1.7496180394516055e-10 -2.277127277008904e-09
+}
+WoodenBox {
+  translation -2.4 1.47 0.25
+  rotation 0 0 1 1.0472
+}

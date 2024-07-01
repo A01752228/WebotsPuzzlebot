@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="no_gui" default="false" doc="Start Webots with minimal GUI"/>
+  <include file="$(find webots_ros)/launch/webots.launch">
+    <arg name="mode" value="realtime"/>
+    <arg name="no_gui" value="$(arg no_gui)"/>
+    <arg name="world" value="$(find webots_ros)/worlds/finalTry.wbt"/>
+  </include>
+
+
+  <!-- Cargar URDF 
+  <param name="robot_description" command="$(find xacro)/xacro '$(find webots_ros)/urdf/my_robot.urdf'" />
+
+   Nodo de publicación del estado del robot
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+
+  <arg name="rviz_config" default="$(find webots_ros)/urdf/robot.rviz"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config)"/> -->
+</launch>

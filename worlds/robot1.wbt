@@ -1,0 +1,179 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/BrushedAluminium.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/CardboardBox.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.3689341230073337 0.24174287640551093 0.8974675451446696 2.511815928612211
+  position 2.7785295859635766 -1.9361251540458397 2.4376073016891575
+}
+TexturedBackground {
+  texture "factory"
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 2 2
+  floorAppearance Parquetry {
+    type "light strip"
+  }
+  wallThickness 0.02
+  wallHeight 0.3
+  wallAppearance BrushedAluminium {
+    colorOverride 0 0 0
+  }
+}
+Robot {
+  translation -2.9059749641311436e-06 1.198165902617683e-05 -0.001123256054297514
+  rotation 0.9733521158714735 0.22931210006749653 0.0012725137170795943 0.011356041922433373
+  children [
+    Solid {
+      translation 0.00799997 -0.0126794 0.075
+      rotation 7.992419102047768e-18 0.1305259853353411 -0.9914448886106773 3.14159
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.533333 0.541176 0.521569
+            roughness 1
+            metalness 0
+          }
+          geometry Mesh {
+            url [
+              "../../../../Downloads/untitled2.stl"
+            ]
+          }
+        }
+      ]
+      name "solid(4)"
+    }
+    Solid {
+      translation 0 0 0.136
+      children [
+        Shape {
+          appearance BrushedAluminium {
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.04
+          }
+        }
+      ]
+      name "solid(3)"
+    }
+    Lidar {
+      translation 0 0 0.136
+      rotation 0 0 1 -1.5707996938995747
+      horizontalResolution 128
+      fieldOfView 1.57
+      numberOfLayers 1
+    }
+    DEF Body Pose {
+      translation 0 -0.01 0.0415
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 0
+            transparency 1
+          }
+          geometry Box {
+            size 0.02 0.05 0.08
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -4.317288318659799
+        anchor 0.09 0 0.052
+      }
+      device [
+        RotationalMotor {
+          name "wr"
+        }
+        PositionSensor {
+          name "ps_1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.09413869725798539 -3.0135041943208654e-05 0.0523182732410102
+        rotation -4.945917702353665e-08 0.9999999999999977 -4.9419807605515204e-08 1.5700000000000032
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColorMap ImageTexture {
+                url [
+                  "../STLS/Picture2.png"
+                ]
+              }
+            }
+            geometry Cylinder {
+              height 0.005
+              radius 0.051
+            }
+          }
+        ]
+        boundingObject USE wheel
+        physics DEF wheel_physics Physics {
+        }
+      }
+    }
+    Solid {
+      translation 0 0.05 0.05
+      rotation 1 0 0 0
+      children [
+        DEF chasis_ Shape {
+          appearance PBRAppearance {
+            baseColor 0.533333 0.541176 0.521569
+            roughness 1
+            metalness 0
+          }
+          geometry Mesh {
+            url [
+              "../STLS/untitled1.stl"
+            ]
+          }
+          castShadows FALSE
+        }
+      ]
+      name "solid(2)"
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -28.007865030033294
+        anchor -0.098 0 0.052
+      }
+      device [
+        RotationalMotor {
+          name "wl"
+        }
+        PositionSensor {
+          name "ps_2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.09382348561905368 0.0001901629045792809 0.05182407103392727
+        rotation 2.36368924415261e-07 0.9999999999999439 2.3636972068631086e-07 1.5707996938996305
+        children [
+          USE wheel
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics USE wheel_physics
+      }
+    }
+  ]
+  boundingObject USE Body
+  physics Physics {
+  }
+  controller "teleop"
+}
+CardboardBox {
+  translation 0 -0.7 0.1
+  size 0.2 0.2 0.2
+}
